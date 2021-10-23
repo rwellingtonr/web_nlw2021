@@ -19,19 +19,42 @@
 
     .message {
       max-width: 440px;
+      // The second message
+      &:nth-child(2) {
+        margin-left: 80px;
+      }
+      .messageContent {
+        font-size: 20px;
+        line-height: 20px;
+      }
 
       .messageUser {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+
         .userImg {
+          //  Picture with a gradient background
+          // The ring
+          padding: 2px;
+          background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
+          border-radius: 50%;
+          line-height: 0;
+
           img {
+            // User's image
             width: 30px;
             height: 30px;
+            border: 4px solid #121214;
             border-radius: 50%;
           }
         }
+        // User name
+        span {
+          font-size: 16px;
+          margin-left: 12px;
+        }
       }
     }
-  }
-
-  .messageContent {
   }
 }

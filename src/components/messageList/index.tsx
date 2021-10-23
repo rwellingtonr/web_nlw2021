@@ -1,10 +1,18 @@
 import styles from "./styles.module.scss"
+import { api } from "../../services/api"
+import { useEffect } from "react"
 
 import logoImg from "../../assets/logo.svg"
 
 const imgGitHub = "https://github.com/rwellingtonr.png"
 
 export const MessageList = () => {
+  useEffect(() => {
+    api.get("/messages/last3").then((res) => {
+      console.log(res.data)
+    })
+  }, [])
+
   return (
     <div className={styles.messageListWrapper}>
       <img src={logoImg} alt="DoWile" />
