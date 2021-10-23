@@ -2,6 +2,8 @@ import styles from "./styles.module.scss"
 
 import logoImg from "../../assets/logo.svg"
 
+const imgGitHub = "https://github.com/rwellingtonr.png"
+
 export const MessageList = () => {
   return (
     <div className={styles.messageListWrapper}>
@@ -15,7 +17,7 @@ export const MessageList = () => {
           </p>
           <div className={styles.messageUser}>
             <div className={styles.userImg}>
-              <img src="https://github.com/rwellingtonr.png" alt="Wellington" />
+              <img src={imgGitHub} alt="Wellington" />
             </div>
             <span> Wellington</span>
           </div>
@@ -27,7 +29,7 @@ export const MessageList = () => {
           </p>
           <div className={styles.messageUser}>
             <div className={styles.userImg}>
-              <img src="https://github.com/rwellingtonr.png" alt="Wellington" />
+              <img src={imgGitHub} alt="Wellington" />
             </div>
             <span> Wellington</span>
           </div>
@@ -39,7 +41,7 @@ export const MessageList = () => {
           </p>
           <div className={styles.messageUser}>
             <div className={styles.userImg}>
-              <img src="https://github.com/rwellingtonr.png" alt="Wellington" />
+              <img src={imgGitHub} alt="Wellington" />
             </div>
             <span> Wellington</span>
           </div>
