@@ -4,8 +4,6 @@ import { useEffect, useState } from "react"
 
 // Images
 import logoImg from "../../assets/logo.svg"
-// External paths
-const imgGitHub = "https://github.com/rwellingtonr.png"
 
 // Types
 type Message = {
@@ -16,12 +14,12 @@ type Message = {
 
 export const MessageList = () => {
   // Message's state will store a messages list
-  const [message, setMessage] = useState<Message[]>([])
+  const [messages, setMessage] = useState<Message[]>([])
 
   // Load the messages
   useEffect(() => {
-    api.get("/messages/last3").then((res) => {
-      console.log(res.data)
+    api.get<Message[]>("/messages/last3").then((res) => {
+      setMessage(res.data)
     })
   }, [])
 
@@ -30,42 +28,19 @@ export const MessageList = () => {
       <img src={logoImg} alt="DoWile" />
 
       <ul className={styles.messageList}>
-        <li className={styles.message}>
-          <p className={styles.messageContent}>
-            Não vejo a hora de começar esse evento, com certeza vai ser o melhor
-            de todos os tempos, vamooo pra cima! 🔥🔥
-          </p>
-          <div className={styles.messageUser}>
-            <div className={styles.userImg}>
-              <img src={imgGitHub} alt="Wellington" />
-            </div>
-            <span> Wellington</span>
-          </div>
-        </li>
-        <li className={styles.message}>
-          <p className={styles.messageContent}>
-            Não vejo a hora de começar esse evento, com certeza vai ser o melhor
-            de todos os tempos, vamooo pra cima! 🔥🔥
-          </p>
-          <div className={styles.messageUser}>
-            <div className={styles.userImg}>
-              <img src={imgGitHub} alt="Wellington" />
-            </div>
-            <span> Wellington</span>
-          </div>
-        </li>
-        <li className={styles.message}>
-          <p className={styles.messageContent}>
-            Não vejo a hora de começar esse evento, com certeza vai ser o melhor
-            de todos os tempos, vamooo pra cima! 🔥🔥
-          </p>
-          <div className={styles.messageUser}>
-            <div className={styles.userImg}>
-              <img src={imgGitHub} alt="Wellington" />
-            </div>
-            <span> Wellington</span>
-          </div>
-        </li>
+        {messages.map((message) => {
+          return (
+            <li key={message.id} className={styles.message}>
+              <p className={styles.messageContent}>{message.text}</p>
+              <div className={styles.messageUser}>
+                <div className={styles.userImg}>
+                  <img src={message.user.avatar_url} alt={message.user.name} />
+                </div>
+                <span> {message.user.name}</span>
+              </div>
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
