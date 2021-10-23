@@ -1,12 +1,24 @@
 import styles from "./styles.module.scss"
 import { api } from "../../services/api"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
+// Images
 import logoImg from "../../assets/logo.svg"
-
+// External paths
 const imgGitHub = "https://github.com/rwellingtonr.png"
 
+// Types
+type Message = {
+  id: string
+  text: string
+  user: { name: string; avatar_url: string }
+}
+
 export const MessageList = () => {
+  // Message's state will store a messages list
+  const [message, setMessage] = useState<Message[]>([])
+
+  // Load the messages
   useEffect(() => {
     api.get("/messages/last3").then((res) => {
       console.log(res.data)
