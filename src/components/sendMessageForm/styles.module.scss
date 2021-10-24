@@ -1,0 +1,42 @@
+.sendMessageFormWrapper {
+  background: #1b1b1f;
+  padding: 24px;
+  align-self: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  position: relative;
+
+  .userImage {
+  }
+
+  .userName {
+  }
+  .userGitHub {
+  }
+
+  .sendMessageForm {
+  }
+}
+
+.signOutButton {
+  background: transparent;
+  border: 0;
+  color: #c4c4cc;
+
+  position: absolute;
+  left: 24px;
+  top: 24px;
+
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
+
+.userInformation {
+}
