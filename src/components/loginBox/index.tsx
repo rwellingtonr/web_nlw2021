@@ -4,9 +4,7 @@ import { AuthContext } from "../../context/auth"
 import { useContext } from "react"
 
 export const LoginBox = () => {
-  const { user, signInUrl } = useContext(AuthContext)
-
-  console.log(user)
+  const { signInUrl } = useContext(AuthContext)
 
   return (
     <div className={styles.loginBoxWrapper}>
