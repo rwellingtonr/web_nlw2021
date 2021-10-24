@@ -1,7 +1,7 @@
 import styles from "./styles.module.scss"
 import { api } from "../../services/api"
 import { useEffect, useState } from "react"
-
+import io from "socket.io-client"
 // Images
 import logoImg from "../../assets/logo.svg"
 
@@ -11,6 +11,15 @@ type Message = {
   text: string
   user: { name: string; avatar_url: string }
 }
+
+const messagesQueue: Message[] = []
+
+const url = "http://localhost:4000"
+const socket = io(url)
+
+socket.on("new_message", (newMessage: Message) => {
+  messagesQueue.push(newMessage)
+})
 
 export const MessageList = () => {
   // Message's state will store a messages list

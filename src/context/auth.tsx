@@ -26,7 +26,7 @@ export const AuthContext = createContext({} as AuthContextData)
 export const AuthProvider = (props: AuthProvider) => {
   const userId = "3f3bb88bf0b525855c51"
 
-  const signInUrl = `https:github.com/login/oauth/authorize?scope=user&client_id=${userId}&redirect_url=http:localhost:3000`
+  const signInUrl = `https:github.com/login/oauth/authorize?scope=user&client_id=${userId}`
 
   // State
   const [user, setUser] = useState<User | null>(null)
@@ -38,7 +38,7 @@ export const AuthProvider = (props: AuthProvider) => {
 
     if (hasGithubCode) {
       const [urlWithoutCode, githubCode] = url.split("/?code=")
-      console.log({ urlWithoutCode, githubCode })
+
       // it won't display the url with code
       window.history.pushState({}, "", urlWithoutCode)
 
@@ -53,7 +53,9 @@ export const AuthProvider = (props: AuthProvider) => {
     const { token, user } = response.data
     // Storage the user data setting the token
     localStorage.setItem("@dowhile:token", token)
-    console.log("Token: ", token)
+    // Get the user token from the header
+    api.defaults.headers.common.authorization = `Bearer ${token}`
+
     setUser(user)
   }
 
