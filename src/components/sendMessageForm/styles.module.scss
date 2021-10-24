@@ -9,17 +9,6 @@
   text-align: center;
 
   position: relative;
-
-  .userImage {
-  }
-
-  .userName {
-  }
-  .userGitHub {
-  }
-
-  .sendMessageForm {
-  }
 }
 
 .signOutButton {
@@ -39,4 +28,98 @@
 }
 
 .userInformation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .userImage {
+    padding: 3px;
+    background: linear-gradient(100deg, #ff008e 0.48%, #ffcd1e 100%);
+    border-radius: 50%;
+    line-height: 0;
+
+    img {
+      // User's image
+      width: 94px;
+      height: 94px;
+      border: 5px solid #121214;
+      border-radius: 50%;
+    }
+  }
+  .userName {
+    font-size: 24px;
+    line-height: 30px;
+    margin-top: 16px;
+  }
+  .userGitHub {
+    display: flex;
+    align-items: center;
+
+    margin-top: 8px;
+    color: #c4c4cc;
+
+    sve {
+      margin-right: 8px;
+    }
+  }
+}
+
+.sendMessageForm {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  margin-top: 48px;
+  background: #202024;
+
+  label {
+    padding: 18px 24px;
+    background: #29292e;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  textarea {
+    background: transparent;
+    border: 0;
+    padding: 24px;
+    resize: none;
+    height: 160px;
+    color: #e1e1e6;
+    font-size: 16px;
+    line-height: 24px;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::placeholder {
+      color: #8d8d99;
+    }
+  }
+
+  button {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    justify-content: center;
+
+    background: #ff008e;
+    color: #fff;
+
+    margin-top: 24px;
+    padding: 0 32px;
+    height: 40px;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    border: 0;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
 }
