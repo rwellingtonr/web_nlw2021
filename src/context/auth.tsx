@@ -8,14 +8,18 @@ type AuthProvider = {
 
 type User = { id: string; name: string; login: string; avatar_url: string }
 
-type AuthContextData = { user: User | null; signInUrl: string }
+type AuthContextData = {
+  user: User | null
+  signInUrl: string
+  signOut: () => void
+}
 
 type Authresponse = {
   token: string
   user: { id: string; name: string; avatar_url: string; login: string }
 }
 
-// Context
+/* Context*/
 export const AuthContext = createContext({} as AuthContextData)
 
 // Provider
@@ -27,6 +31,7 @@ export const AuthProvider = (props: AuthProvider) => {
   // State
   const [user, setUser] = useState<User | null>(null)
 
+  // Get the GitHub code when clicked to signin with GitHub
   useEffect(() => {
     const url = window.location.href
     const hasGithubCode = url.includes("?code=")
@@ -46,14 +51,33 @@ export const AuthProvider = (props: AuthProvider) => {
       code: githubCode,
     })
     const { token, user } = response.data
-    // Storage the user data
+    // Storage the user data setting the token
     localStorage.setItem("@dowhile:token", token)
     console.log("Token: ", token)
     setUser(user)
   }
 
+  // Gets the Toke after sign in
+  useEffect(() => {
+    const token = localStorage.getItem("@dowhile:token")
+
+    if (token) {
+      // Get the user token from the header
+      api.defaults.headers.common.authorization = `Bearer ${token}`
+      // Set the user profile, keeping this one online
+      api.get<User>("profile").then((response) => setUser(response.data))
+    }
+  }, [])
+
+  const signOut = () => {
+    // Return the user to null
+    setUser(null)
+    // Remove the user token from the storage
+    localStorage.removeItem("@dowhile:token")
+  }
+
   return (
-    <AuthContext.Provider value={{ signInUrl, user }}>
+    <AuthContext.Provider value={{ signInUrl, user, signOut }}>
       {props.children}
     </AuthContext.Provider>
   )
