@@ -32,6 +32,21 @@ export const MessageList = () => {
     })
   }, [])
 
+  // Reload the messages
+
+  useEffect(() => {
+    const delay = 3000
+    const timer = setInterval(() => {
+      if (messagesQueue.length > 0) {
+        // if there is an empety message, then the boolean will filter it
+        setMessage((prevState) =>
+          [messagesQueue[0], prevState[0], prevState[1]].filter(Boolean)
+        )
+        messagesQueue.shift()
+      }
+    }, delay)
+  }, [])
+
   return (
     <div className={styles.messageListWrapper}>
       <img src={logoImg} alt="DoWile" />

@@ -17,6 +17,8 @@ export const SendMessageForm = () => {
       return
     }
     await api.post("messages", { message })
+    // Clean up the message box
+    setMessage("")
   }
   return (
     <div className={styles.sendMessageFormWrapper}>
@@ -39,12 +41,12 @@ export const SendMessageForm = () => {
         <textarea
           name="message"
           id="message"
-          placeholder="Mensagem"
+          placeholder="Deixe seu comentário"
+          spellCheck="true"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        >
-          Qual é a sua expectativa para o evento?
-        </textarea>
+        />
+
         <button type="submit">Enviar mensagem</button>
       </form>
     </div>

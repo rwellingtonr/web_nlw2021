@@ -9,6 +9,7 @@
   text-align: center;
 
   position: relative;
+  border-radius: 5%;
 }
 
 .signOutButton {
@@ -58,7 +59,7 @@
     margin-top: 8px;
     color: #c4c4cc;
 
-    sve {
+    svg {
       margin-right: 8px;
     }
   }
@@ -70,6 +71,7 @@
   align-self: stretch;
   margin-top: 48px;
   background: #202024;
+  border-radius: 15px;
 
   label {
     padding: 18px 24px;
@@ -77,6 +79,7 @@
     font-size: 20px;
     font-weight: bold;
     text-align: center;
+    border-radius: 10px 10px 0px 0px;
   }
   textarea {
     background: transparent;
@@ -116,6 +119,7 @@
     text-decoration: none;
 
     border: 0;
+    border-radius: 5px 5px 10px 5px;
     cursor: pointer;
 
     &:hover {
